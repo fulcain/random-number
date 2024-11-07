@@ -6,10 +6,16 @@ import { ModeToggle } from "@/components/ModeToggle";
 function App() {
   const [isAppStarted, setIsAppStarted] = useState(false);
   const [randomNumber, setRandomNumber] = useState<number>(0);
+  const TIMEOUT_BETWEEN_SETS = 4000;
 
   const handleChangeAppStatus = () => {
     setIsAppStarted((prev) => !prev);
-    if (!isAppStarted) makeRandomNumber();
+
+    if (!isAppStarted) {
+      setTimeout(() => {
+        makeRandomNumber();
+      }, 2000);
+    }
   };
 
   const makeRandomNumber = () => {
@@ -19,11 +25,14 @@ function App() {
   useEffect(() => {
     if (randomNumber === 0) return;
 
-    const timeoutTime = randomNumber * 1000 + 2000;
+    const timeoutTime = randomNumber * 1000 + TIMEOUT_BETWEEN_SETS;
 
     const timer = setTimeout(() => {
       makeRandomNumber();
     }, timeoutTime);
+
+    const audioPath = `${import.meta.env.BASE_URL}audio/${randomNumber}.mp3`;
+    new Audio(audioPath).play();
 
     return () => clearTimeout(timer);
   }, [randomNumber]);
