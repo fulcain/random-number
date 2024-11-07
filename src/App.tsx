@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ThemeProvider } from "./components/themeProvider";
-import { ModeToggle } from "./components/ModeToggle";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { ModeToggle } from "@/components/ModeToggle";
 
 function App() {
   const [isAppStarted, setIsAppStarted] = useState(false);
@@ -37,7 +37,9 @@ function App() {
   return (
     <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
       <div className="fixed left-0 right-0  top-3 flex flex-row gap-2 items-center justify-center">
-        <h2 className="sm:text-lg lg:text-2xl">شمارش تصادفی برای ورزش های رزمی</h2>
+        <h2 className="sm:text-lg lg:text-2xl">
+          شمارش تصادفی برای ورزش های رزمی
+        </h2>
         <ModeToggle />
       </div>
       <div className="flex flex-col justify-center items-center h-full gap-2">
